@@ -6,6 +6,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+<<<<<<< Updated upstream
 from tunematch.pages.algorithms import Stack, Queue, merge_sort, binary_search_prefix
 from tunematch.pages.api_clients import LastFM, Deezer, GeminiAI, APIError
 from tunematch.pages.exporter import to_excel_bytes, to_pdf_bytes
@@ -68,6 +69,8 @@ def add_to_playlist(rec):
 
 
 # ---------------------------------------------------------------- Beranda
+=======
+>>>>>>> Stashed changes
 def page_home():
     st.title("Temukan Lagu yang Pas untuk Suasanamu")
     st.caption("Ceritakan mood atau aktivitasmu, pilih lagu favorit, dapatkan rekomendasi.")
@@ -76,6 +79,7 @@ def page_home():
     st.text_area("Mood / aktivitas", key="mood", label_visibility="collapsed",
                  placeholder="contoh: ingin lagu santai untuk belajar malam hari")
 
+<<<<<<< Updated upstream
     st.subheader("2. Lagu / artis favorit")
     c1, c2 = st.columns([5, 1], vertical_alignment="bottom")
     q = c1.text_input("Cari lagu atau artis (Last.fm)", key="q")
@@ -262,3 +266,69 @@ def page_about():
 
 {"Beranda": page_home, "Rekomendasi": page_recs,
  "Playlist & Dashboard": page_dash, "Tentang": page_about}[page]()
+=======
+    # st.subheader("2. Lagu / artis favorit")
+    # c1, c2 = st.columns([5, 1], vertical_alignment="bottom")
+    # q = c1.text_input("Cari lagu atau artis (Last.fm)", key="q")
+    # if c2.button("Cari") and q.strip():
+    #     try:
+    #         S.search_results = lfm.search_tracks(q.strip())
+    #         if not S.search_results:
+    #             st.info("Tidak ada hasil.")
+    #     except APIError as e:
+    #         st.error(str(e))
+    # if S.search_results:
+    #     opts = S.search_results
+    #     idx = st.selectbox("Hasil pencarian", range(len(opts)),
+    #                        format_func=lambda i: f"{opts[i]['title']} - {opts[i]['artist']}")
+    #     if st.button("➕ Tambah ke favorit"):
+    #         st.success("Ditambahkan.") if add_favorite(opts[idx]) else st.info("Sudah ada di daftar.")
+
+    # up = st.file_uploader("Atau unggah CSV (kolom: judul, artis)", type="csv")
+    # if up is not None and st.button("Impor CSV"):
+    #     try:
+    #         df = pd.read_csv(up)
+    #         df.columns = [c.strip().lower() for c in df.columns]
+    #         df = df.rename(columns={"title": "judul", "lagu": "judul", "artist": "artis"})
+    #         if not {"judul", "artis"} <= set(df.columns):
+    #             st.error("CSV harus memiliki kolom 'judul' dan 'artis'.")
+    #         else:
+    #             df = df.dropna(subset=["judul", "artis"])
+    #             n = sum(add_favorite({"title": str(r.judul).strip(), "artist": str(r.artis).strip()})
+    #                     for r in df.itertuples())
+    #             st.success(f"{n} lagu diimpor.")
+    #     except Exception as e:
+    #         st.error(f"Gagal membaca CSV: {e}")
+
+    # if S.favorites:
+    #     st.dataframe(pd.DataFrame(S.favorites).rename(columns={"title": "Judul", "artist": "Artis"}),
+    #                  hide_index=True, use_container_width=True)
+    #     if st.button("Kosongkan favorit"):
+    #         S.favorites = []
+    #         st.rerun()
+
+    # st.subheader("3. Jumlah rekomendasi")
+    # n = st.slider("Jumlah", 5, 20, 10, label_visibility="collapsed")
+
+    # if st.button("Cari Rekomendasi", type="primary"):
+    #     mood = S.mood.strip()
+    #     if not S.favorites and not mood:
+    #         st.warning("Isi deskripsi mood atau tambahkan minimal satu lagu favorit.")
+    #         return
+    #     try:
+    #         with st.spinner("Mencari rekomendasi..."):
+    #             S.mood_tags = ai.mood_to_tags(mood) if mood else []
+    #             S.recs = build_recommendations(lfm, S.favorites, S.mood_tags, n)
+    #             if not S.recs:
+    #                 st.warning("Tidak ada kandidat ditemukan. Coba tambah lagu favorit atau ubah deskripsi.")
+    #                 return
+    #             S.summary, expl = ai.explain(mood, S.favorites, S.recs)
+    #             for r, e in zip(S.recs, expl):
+    #                 r["explanation"] = e
+    #             S.report = {}
+    #     except APIError as e:
+    #         st.error(str(e))
+    #         return
+    #     S.goto = "Rekomendasi"
+    #     st.rerun()
+>>>>>>> Stashed changes
