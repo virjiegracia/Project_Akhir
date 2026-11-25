@@ -1,9 +1,0 @@
-streamlit>=1.40
-pandas
-plotly
-requests
-fpdf2
-openpyxl
-matplotlib
-google-genai
-python-dotenv
